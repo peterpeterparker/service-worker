@@ -3,7 +3,8 @@ import { defineConfig } from 'vite';
 
 export default defineConfig(({ mode }) => ({
   build: {
-    sourcemap: mode !== "production"
+    sourcemap: mode !== "production",
+    assetsDir: "."
   },
   plugins: [
     VitePWA({
