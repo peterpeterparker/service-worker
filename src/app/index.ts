@@ -3,7 +3,7 @@ import {
   ICHostInfoEvent,
   SaveICHostInfoMessage,
   ServiceWorkerEvents,
-} from './typings';
+} from '../typings';
 import { getValueFromCookie } from './utils';
 
 function updateStatus(message: string) {
