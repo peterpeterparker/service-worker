@@ -7,11 +7,11 @@ import { streamingCallbackHttpResponseType } from '../declarations';
 import { IDL } from '@dfinity/candid';
 import {
   HttpAgent,
-  QueryResponse,
+  type QueryResponse,
   QueryResponseStatus,
   concat,
-} from '@dfinity/agent';
-import { Principal } from '@dfinity/principal';
+} from '@dfinity/agent/lib/cjs';
+import type { Principal } from '@dfinity/principal';
 
 const MAX_CALLBACKS = 1000;
 
