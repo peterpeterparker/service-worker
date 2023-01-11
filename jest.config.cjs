@@ -7,7 +7,12 @@ module.exports = {
 	setupFiles: [`<rootDir>/test-setup.ts`, 'fake-indexeddb/auto'],
 	moduleDirectories: ['node_modules'],
 	transform: {
-		'^.+\\.[tj]s$': 'ts-jest'
+		"^.+\\.(t|j)s$": [
+			"ts-jest",
+			{
+				tsconfig: "tsconfig.spec.json",
+			},
+		]
 	},
 	timers: 'fake',
 	reporters: ['default', 'jest-junit'],
