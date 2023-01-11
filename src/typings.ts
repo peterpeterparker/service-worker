@@ -1,14 +1,14 @@
 export enum ServiceWorkerEvents {
-  SaveICHostInfo = 'SaveICHostInfo',
+	SaveICHostInfo = 'SaveICHostInfo'
 }
 
 export interface ICHostInfoEvent {
-  hostname: string;
-  canisterId: string;
-  gateway: string;
+	hostname: string;
+	canisterId: string;
+	gateway: string;
 }
 
 export interface SaveICHostInfoMessage {
-  action: ServiceWorkerEvents.SaveICHostInfo;
-  data: ICHostInfoEvent;
+	action: ServiceWorkerEvents.SaveICHostInfo;
+	data: ICHostInfoEvent;
 }

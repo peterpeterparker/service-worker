@@ -7,19 +7,19 @@
 global.TextEncoder = require('text-encoding').TextEncoder;
 global.TextDecoder = require('text-encoding').TextDecoder;
 Object.defineProperty(self, 'location', {
-  value: {
-    protocol: 'https:',
-    host: 'rdmx6-jaaaa-aaaaa-aaadq-cai.ic0.app',
-    hostname: 'rdmx6-jaaaa-aaaaa-aaadq-cai.ic0.app',
-    toString: () => 'https://rdmx6-jaaaa-aaaaa-aaadq-cai.ic0.app',
-    href: 'https://rdmx6-jaaaa-aaaaa-aaadq-cai.ic0.app',
-  },
-  writable: true,
+	value: {
+		protocol: 'https:',
+		host: 'rdmx6-jaaaa-aaaaa-aaadq-cai.ic0.app',
+		hostname: 'rdmx6-jaaaa-aaaaa-aaadq-cai.ic0.app',
+		toString: () => 'https://rdmx6-jaaaa-aaaaa-aaadq-cai.ic0.app',
+		href: 'https://rdmx6-jaaaa-aaaaa-aaadq-cai.ic0.app'
+	},
+	writable: true
 });
 process.env.FORCE_FETCH_ROOT_KEY = 'true';
 Object.defineProperty(global.self, 'crypto', {
-  value: {
-    subtle: require('crypto').webcrypto.subtle,
-  },
+	value: {
+		subtle: require('crypto').webcrypto.subtle
+	}
 });
 require('jest-fetch-mock').enableMocks();
