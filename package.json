@@ -15,12 +15,12 @@
     "directory": "typescript/service-worker"
   },
   "dependencies": {
-    "@dfinity/agent": "~0.13.3",
-    "@dfinity/candid": "~0.13.3",
-    "@dfinity/principal": "~0.13.3",
+    "@dfinity/agent": "~0.15.1",
+    "@dfinity/candid": "~0.15.1",
+    "@dfinity/principal": "~0.15.1",
     "base64-arraybuffer": "^1.0.2",
     "idb": "^7.1.1",
-    "pako": "^2.0.3"
+    "pako": "^2.1.0"
   },
   "devDependencies": {
     "@types/jest": "^27.4.1",
