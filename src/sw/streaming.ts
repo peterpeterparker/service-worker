@@ -8,9 +8,8 @@ import { IDL } from '@dfinity/candid';
 import {
   HttpAgent,
   type QueryResponse,
-  QueryResponseStatus,
   concat,
-} from '@dfinity/agent/lib/cjs';
+} from '@dfinity/agent';
 import type { Principal } from '@dfinity/principal';
 
 const MAX_CALLBACKS = 1000;
@@ -36,7 +35,7 @@ export async function streamContent(
       callBackFunc
     );
     switch (callbackResponse.status) {
-      case QueryResponseStatus.Replied: {
+      case "replied": {
         const callbackData = IDL.decode(
           [streamingCallbackHttpResponseType],
           callbackResponse.reply.arg
@@ -49,7 +48,7 @@ export async function streamContent(
         }
         break;
       }
-      case QueryResponseStatus.Rejected: {
+      case "rejected": {
         throw new Error('Streaming callback error: ' + callbackResponse);
       }
     }
