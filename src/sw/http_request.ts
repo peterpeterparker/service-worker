@@ -5,8 +5,8 @@
 import { Actor, ActorSubclass, HttpAgent, concat } from '@dfinity/agent';
 import { Principal } from '@dfinity/principal';
 import { validateBody } from './validation';
-import * as base64Arraybuffer from 'base64-arraybuffer';
-import * as pako from 'pako';
+import { decode } from 'base64-arraybuffer';
+import { ungzip, inflate } from 'pako';
 import {
   HttpRequest,
   _SERVICE,
@@ -28,9 +28,9 @@ function decodeBody(body: Uint8Array, encoding: string): Uint8Array {
     case '':
       return body;
     case 'gzip':
-      return pako.ungzip(body);
+      return ungzip(body);
     case 'deflate':
-      return pako.inflate(body);
+      return inflate(body);
     default:
       throw new Error(`Unsupported encoding: "${encoding}"`);
   }
@@ -225,7 +225,7 @@ export async function handleRequest(request: Request): Promise<Response> {
                 const [, name, b64Value] = [...f.match(/^(.*)=:(.*):$/)].map(
                   (x) => x.trim()
                 );
-                const value = base64Arraybuffer.decode(b64Value);
+                const value = decode(b64Value);
 
                 if (name === 'certificate') {
                   certificate = value;
