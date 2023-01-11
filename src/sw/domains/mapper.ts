@@ -36,9 +36,8 @@ export class ResolverMapper {
   static getPrincipalFromText(canisterId: string): Principal {
     try {
       return Principal.fromText(canisterId);
-    } catch (err) {
-      const error: Error = err;
-      throw new MalformedCanisterError(error.message);
+    } catch (err: unknown) {
+      throw new MalformedCanisterError((err as Error).message);
     }
   }
 
@@ -49,8 +48,7 @@ export class ResolverMapper {
     try {
       return new URL(protocol + '//' + hostname);
     } catch (err) {
-      const error: Error = err;
-      throw new MalformedHostnameError(error.message);
+      throw new MalformedHostnameError((err as Error).message);
     }
   }
 

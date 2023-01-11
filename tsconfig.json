@@ -1,15 +1,24 @@
 {
   "compilerOptions": {
-    "target": "es2017",
-    // Required for buffer-pipe
-    "esModuleInterop": true,
-    "lib": ["dom", "es2015", "es2017", "ES2020", "DOM", "ScriptHost", "WebWorker"],
+    "target": "ESNext",
+    "useDefineForClassFields": true,
     "module": "ESNext",
-    "moduleResolution": "node",
-    "outDir": "./lib/esm",
-    "rootDir": "."
+    "lib": [
+      "ESNext",
+      "DOM",
+      "webworker"
+    ],
+    "moduleResolution": "Node",
+    "strict": true,
+    "resolveJsonModule": true,
+    "isolatedModules": false,
+    "esModuleInterop": true,
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "skipLibCheck": true
   },
-  "include": ["src/**/*.ts"],
-  "resolveJsonModule": true,
+  "include": ["src"],
   "exclude": ["src/**/*.test.ts", "src/mocks/*"]
 }

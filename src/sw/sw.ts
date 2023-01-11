@@ -2,22 +2,22 @@ import { ServiceWorkerEvents } from '../typings';
 import { CanisterResolver } from './domains';
 import { handleRequest } from './http_request';
 
-declare const self: ServiceWorkerGlobalScope;
+declare const self: ServiceWorkerGlobalScope
 
 const DEBUG = true;
 
 // Always install updated SW immediately
-self.addEventListener('install', (event) => {
+self.addEventListener('install', (event: ExtendableEvent) => {
   event.waitUntil(self.skipWaiting());
 });
 
-self.addEventListener('activate', (event) => {
+self.addEventListener('activate', (event: ExtendableEvent) => {
   // upon activation take control of all clients (tabs & windows)
   event.waitUntil(self.clients.claim());
 });
 
 // Intercept and proxy all fetch requests made by the browser or DOM on this scope.
-self.addEventListener('fetch', (event) => {
+self.addEventListener('fetch', (event: FetchEvent) => {
   try {
     const response = handleRequest(event.request);
     event.respondWith(response);

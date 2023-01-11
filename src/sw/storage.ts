@@ -45,7 +45,7 @@ interface StorageConnectOptions<
  * Provides custom access to indexed db storage while still
  * keeping access to the underlying idb object.
  */
-class Storage<StorageDB extends DBSchema | unknown = unknown> {
+export class Storage<StorageDB extends DBSchema | unknown = unknown> {
   private constructor(
     private readonly idb: IDBPDatabase<unknown>,
     private readonly defaultStore: StoreName<StorageDB>
@@ -118,6 +118,11 @@ class Storage<StorageDB extends DBSchema | unknown = unknown> {
 
     const defaultStore =
       stores?.default ?? (idb.objectStoreNames[0] as typeof stores.default);
+
+    if (!defaultStore) {
+      throw new Error('Default store cannot be initialized');
+    }
+
     const storage = new Storage<StorageDB>(idb, defaultStore);
 
     await storage.removeOutdatedRecords();
@@ -243,16 +248,3 @@ class Storage<StorageDB extends DBSchema | unknown = unknown> {
   }
 }
 
-export {
-  DB_NAME,
-  DB_VERSION,
-  DB_DEFAULT_STORE,
-  Storage,
-  StorageConnectOptions,
-  CreateStoreFn,
-  StoresOptions,
-  IDBKey,
-  CreateStoreOptions,
-  InitStores,
-  DBSchema,
-};

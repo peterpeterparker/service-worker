@@ -10,8 +10,8 @@ import { ungzip, inflate } from 'pako';
 import {
   HttpRequest,
   _SERVICE,
-} from '../http-interface/canister_http_interface_types';
-import { idlFactory } from '../http-interface/canister_http_interface';
+} from '../declarations/canister_http_interface.did';
+import { idlFactory } from '../declarations';
 import { streamContent } from './streaming';
 import { CanisterResolver } from './domains';
 
@@ -92,7 +92,7 @@ async function removeLegacySubDomains(
     signal,
   } = originalRequest;
 
-  const requestInit = {
+  const requestInit: Record<string, string | Headers | boolean | AbortSignal | ArrayBuffer> = {
     cache,
     credentials,
     headers,
@@ -113,7 +113,7 @@ async function removeLegacySubDomains(
 
   return new Request(
     `${url.protocol}//${gatewayUrl.hostname}${url.pathname}`,
-    requestInit as unknown
+    requestInit
   );
 }
 
@@ -222,7 +222,7 @@ export async function handleRequest(request: Request): Promise<Response> {
             {
               const fields = value.split(/,/);
               for (const f of fields) {
-                const [, name, b64Value] = [...f.match(/^(.*)=:(.*):$/)].map(
+                const [, name, b64Value] = [...(f.match(/^(.*)=:(.*):$/) ?? [])].map(
                   (x) => x.trim()
                 );
                 const value = decode(b64Value);

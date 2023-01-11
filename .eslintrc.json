@@ -11,5 +11,5 @@
     "sourceType": "module"
   },
   "plugins": ["@typescript-eslint"],
-  "ignorePatterns": ["src/http-interface/*", "src/**/*test.ts"]
+  "ignorePatterns": ["src/declarations/*", "src/**/*test.ts"]
 }

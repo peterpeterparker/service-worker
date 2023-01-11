@@ -29,7 +29,7 @@ the agent and, for security reasons, should not be fetched by the agent.
 Generate the binding:
 
 ```shell
-didc bind ./src/http-interface/canister_http_interface.did --target js > ./src/http-interface/canister_http_interface.js
+didc bind ./src/declarations/canister_http_interface.did --target js > ./src/declarations/canister_http_interface.js
 ```
 
 Then move the `StreamingCallbackHttpResponse` variable outside of the `idlFactory` function, rename to `streamingCallbackHttpResponseType` and then export it.
@@ -51,7 +51,7 @@ const Token = IDL.Unknown;
 Generate the binding:
 
 ```shell
-didc bind ./src/http-interface/canister_http_interface.did --target ts > ./src/http-interface/canister_http_interface_types.d.ts
+didc bind ./src/declarations/canister_http_interface.did --target ts > ./src/declarations/canister_http_interface_types.d.ts
 ```
 
 Add the following import:

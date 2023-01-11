@@ -66,7 +66,7 @@ window.addEventListener('load', async () => {
       action: ServiceWorkerEvents.SaveICHostInfo,
       data: icHostInfo,
     };
-    worker.active.postMessage(message);
+    worker.active?.postMessage(message);
   }
 
   // // reload the page so the service worker can intercept the requests

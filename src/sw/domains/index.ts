@@ -71,7 +71,7 @@ export class CanisterResolver {
     return lookup.canister.gateway;
   }
 
-  resolveLookupFromUrl(domain: URL): DomainLookup | null {
+  resolveLookupFromUrl(domain: URL): DomainLookup | null | undefined {
     // maybe resolve from hardcoded mappings to avoid uncessary network round trips
     if (hostnameCanisterIdMap.has(domain.hostname)) {
       return hostnameCanisterIdMap.get(domain.hostname);
@@ -239,13 +239,14 @@ export class CanisterResolver {
       const successfulResponse =
         response.status >= 200 && response.status < 300;
 
+      const canisterId = headers.get(domainLookupHeaders.canisterId);
+      const gateway = headers.get(domainLookupHeaders.gateway);
+
       if (
         successfulResponse &&
-        headers.has(domainLookupHeaders.canisterId) &&
-        headers.has(domainLookupHeaders.gateway)
+          canisterId !== null &&
+          gateway !== null
       ) {
-        const canisterId = headers.get(domainLookupHeaders.canisterId);
-        const gateway = headers.get(domainLookupHeaders.gateway);
         lookup.canister = {
           principal: ResolverMapper.getPrincipalFromText(canisterId),
           gateway: ResolverMapper.getURLFromHostname(gateway),

@@ -12,7 +12,7 @@ import {
 import { IDL } from '@dfinity/candid';
 import { fromHex } from '@dfinity/agent/lib/cjs/utils/buffer';
 import { Principal } from '@dfinity/principal';
-import { HttpRequest } from '../http-interface/canister_http_interface_types';
+import { HttpRequest } from '../declarations/canister_http_interface.did';
 import { CanisterResolver } from './domains';
 
 const CANISTER_ID = 'qoctq-giaaa-aaaaa-aaaea-cai';

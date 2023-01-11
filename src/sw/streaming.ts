@@ -2,8 +2,8 @@ import {
   StreamingCallbackHttpResponse,
   StreamingStrategy,
   Token,
-} from '../http-interface/canister_http_interface_types';
-import { streamingCallbackHttpResponseType } from '../http-interface/canister_http_interface';
+} from '../declarations/canister_http_interface.did';
+import { streamingCallbackHttpResponseType } from '../declarations';
 import { IDL } from '@dfinity/candid';
 import {
   HttpAgent,
