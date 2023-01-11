@@ -1,6 +1,10 @@
 import { VitePWA } from 'vite-plugin-pwa';
 import { defineConfig } from 'vite';
-export default defineConfig({
+
+export default defineConfig(({ mode }) => ({
+  build: {
+    sourcemap: mode !== "production"
+  },
   plugins: [
     VitePWA({
       injectRegister: null,
@@ -8,6 +12,6 @@ export default defineConfig({
       injectManifest: { injectionPoint: undefined, rollupFormat: 'iife' },
       srcDir: 'src/sw/',
       filename: 'sw.ts',
-    }),
+    })
   ],
-});
+}));
