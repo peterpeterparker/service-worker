@@ -1,6 +1,7 @@
 import { ICHostInfoEvent, SaveICHostInfoMessage, ServiceWorkerEvents } from '../typings';
 import './style.css';
 import { getValueFromCookie } from './utils';
+import {PACKAGE_VERSION} from "../env";
 
 function updateStatus(message: string) {
 	const statusEl = document.getElementById('status');
@@ -44,7 +45,7 @@ window.addEventListener('load', async () => {
 	}
 
 	console.log(
-		`Installing a service worker ${process.env.VERSION} to proxy and validate content...`
+		`Installing a service worker ${PACKAGE_VERSION} to proxy and validate content...`
 	);
 
 	// Ok, let's install the service worker...

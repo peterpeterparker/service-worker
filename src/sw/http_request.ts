@@ -8,11 +8,10 @@ import { decode } from 'base64-arraybuffer';
 import { inflate, ungzip } from 'pako';
 import { idlFactory } from '../declarations';
 import { HttpRequest, _SERVICE } from '../declarations/canister_http_interface.did';
+import { FETCH_ROOT_KEY } from '../env';
 import { CanisterResolver } from './domains';
 import { streamContent } from './streaming';
 import { validateBody } from './validation';
-
-const shouldFetchRootKey = Boolean(process.env.FORCE_FETCH_ROOT_KEY);
 
 /**
  * Decode a body (ie. deflate or gunzip it) based on its content-encoding.
@@ -151,7 +150,7 @@ export async function handleRequest(request: Request): Promise<Response> {
 			const [agent, actor] = await createAgentAndActor(
 				lookup.canister.gateway,
 				lookup.canister.principal,
-				shouldFetchRootKey
+				FETCH_ROOT_KEY
 			);
 			const requestHeaders: [string, string][] = [['Host', url.hostname]];
 			request.headers.forEach((value, key) => {
@@ -252,7 +251,7 @@ export async function handleRequest(request: Request): Promise<Response> {
 					certificate,
 					tree,
 					agent,
-					shouldFetchRootKey
+					FETCH_ROOT_KEY
 				);
 
 				if (!bodyValid) {
@@ -265,7 +264,7 @@ export async function handleRequest(request: Request): Promise<Response> {
 						certificate,
 						tree,
 						agent,
-						shouldFetchRootKey
+						FETCH_ROOT_KEY
 					);
 				}
 			}
