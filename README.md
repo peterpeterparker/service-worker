@@ -9,6 +9,10 @@ Service worker which transforms browser asset request to the IC to canister call
 | dev build for testnets | dist-dev  | `npm run build-dev` | - sets `FORCE_FETCH_ROOT_KEY=1`<br>- not minified |
 | prod build for mainnet | dist-prod | `npm run build`     | - uses IC root key<br>- minified                  |
 
+## Development
+
+http://localhost:5174/?canisterId=sgymv-uiaaa-aaaaa-aaaia-cai
+
 ### Prerequisites
 
 - Node.js 17

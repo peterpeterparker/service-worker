@@ -8,7 +8,7 @@ import { decode } from 'base64-arraybuffer';
 import { inflate, ungzip } from 'pako';
 import { idlFactory } from '../declarations';
 import { HttpRequest, _SERVICE } from '../declarations/canister_http_interface.did';
-import { FETCH_ROOT_KEY } from '../env';
+import {FETCH_ROOT_KEY, HOST} from '../env';
 import { CanisterResolver } from './domains';
 import { streamContent } from './streaming';
 import { validateBody } from './validation';
@@ -33,18 +33,19 @@ function decodeBody(body: Uint8Array, encoding: string): Uint8Array {
 }
 
 async function createAgentAndActor(
-	gatewayUrl: URL,
-	canisterId: Principal,
-	fetchRootKey: boolean
+	canisterId: Principal
 ): Promise<[HttpAgent, ActorSubclass<_SERVICE>]> {
-	const agent = new HttpAgent({ host: gatewayUrl.toString() });
-	if (fetchRootKey) {
+	const agent = new HttpAgent({ host: HOST });
+
+	if (FETCH_ROOT_KEY) {
 		await agent.fetchRootKey();
 	}
+
 	const actor = Actor.createActor<_SERVICE>(idlFactory, {
 		agent,
 		canisterId: canisterId
 	});
+
 	return [agent, actor];
 }
 
@@ -148,10 +149,9 @@ export async function handleRequest(request: Request): Promise<Response> {
 	if (lookup.canister) {
 		try {
 			const [agent, actor] = await createAgentAndActor(
-				lookup.canister.gateway,
-				lookup.canister.principal,
-				FETCH_ROOT_KEY
+				lookup.canister.principal
 			);
+
 			const requestHeaders: [string, string][] = [['Host', url.hostname]];
 			request.headers.forEach((value, key) => {
 				if (key.toLowerCase() === 'if-none-match') {

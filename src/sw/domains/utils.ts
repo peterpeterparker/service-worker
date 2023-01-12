@@ -8,6 +8,7 @@ import { CanisterLookup } from './typings';
  */
 export function maybeResolveCanisterFromHeaders(headers: Headers): CanisterLookup | null {
 	const maybeHostHeader = headers.get('host');
+
 	if (maybeHostHeader) {
 		// Remove the port.
 		const lookup = maybeResolveCanisterFromHostName(maybeHostHeader.replace(/:\d+$/, ''));

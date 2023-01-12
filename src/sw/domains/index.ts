@@ -66,7 +66,7 @@ export class CanisterResolver {
 	}
 
 	resolveLookupFromUrl(domain: URL): DomainLookup | null | undefined {
-		// maybe resolve from hardcoded mappings to avoid uncessary network round trips
+		// maybe resolve from hardcoded mappings to avoid unnecessary network round trips
 		if (hostnameCanisterIdMap.has(domain.hostname)) {
 			return hostnameCanisterIdMap.get(domain.hostname);
 		}
@@ -78,6 +78,7 @@ export class CanisterResolver {
 
 		// maybe resolve the canister id from url
 		const canister = resolveCanisterFromUrl(domain);
+
 		if (canister) {
 			return {
 				canister: {
@@ -92,6 +93,7 @@ export class CanisterResolver {
 
 	async lookupFromHttpRequest(request: Request): Promise<DomainLookup> {
 		const canister = maybeResolveCanisterFromHeaders(request.headers);
+
 		if (canister) {
 			return {
 				canister: {
