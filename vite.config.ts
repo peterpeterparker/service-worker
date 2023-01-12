@@ -21,5 +21,12 @@ export default defineConfig(({ mode }) => ({
 	],
 	define:  {
 		'import.meta.env.PACKAGE_VERSION': JSON.stringify(packageJson.version)
+	},
+	optimizeDeps: {
+		esbuildOptions: {
+			define: {
+				global: 'globalThis'
+			}
+		}
 	}
 }));
