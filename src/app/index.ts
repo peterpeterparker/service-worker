@@ -1,7 +1,7 @@
 import { ICHostInfoEvent, SaveICHostInfoMessage, ServiceWorkerEvents } from '../typings';
 import './style.css';
 import { getValueFromCookie } from './utils';
-import {PACKAGE_VERSION} from "../env";
+import {PACKAGE_VERSION, WORKER_SCRIPT, WORKER_TYPE} from "../env";
 
 function updateStatus(message: string) {
 	const statusEl = document.getElementById('status');
@@ -52,7 +52,7 @@ window.addEventListener('load', async () => {
 	// note: if the service worker was already installed, when the browser requested <domain>/, it would have
 	// proxied the response from <domain>/<canister-id>/, so this bootstrap file would have never been
 	// retrieved from the boundary nodes
-	await navigator.serviceWorker.register('/sw.js');
+	await navigator.serviceWorker.register(WORKER_SCRIPT, {type: WORKER_TYPE});
 
 	// delays code execution until serviceworker is ready
 	const worker = await navigator.serviceWorker.ready;

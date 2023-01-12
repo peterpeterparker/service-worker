@@ -13,7 +13,10 @@ export default defineConfig(({ mode }) => ({
 			strategies: 'injectManifest',
 			injectManifest: { injectionPoint: undefined, rollupFormat: 'iife' },
 			srcDir: 'src/sw/',
-			filename: 'sw.ts'
+			filename: 'sw.ts',
+			devOptions: {
+				enabled: true
+			}
 		})
 	],
 	define:  {
