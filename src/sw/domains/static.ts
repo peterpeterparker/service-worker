@@ -1,7 +1,8 @@
 import { Principal } from '@dfinity/principal';
 import { StaticDomainMappings } from './typings';
+import {HOST} from "../../env";
 
-export const DEFAULT_GATEWAY = new URL(self.location.protocol + '//' + 'ic0.app');
+export const DEFAULT_GATEWAY = new URL(HOST);
 
 export const hostnameCanisterIdMap: StaticDomainMappings = new Map(
 	Object.entries({

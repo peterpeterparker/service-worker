@@ -8,7 +8,7 @@ import { decode } from 'base64-arraybuffer';
 import { inflate, ungzip } from 'pako';
 import { idlFactory } from '../declarations';
 import { HttpRequest, _SERVICE } from '../declarations/canister_http_interface.did';
-import {FETCH_ROOT_KEY, HOST} from '../env';
+import {DEV, FETCH_ROOT_KEY, HOST} from '../env';
 import { CanisterResolver } from './domains';
 import { streamContent } from './streaming';
 import { validateBody } from './validation';
@@ -126,7 +126,7 @@ export async function handleRequest(request: Request): Promise<Response> {
 	 * We try to do an HTTP Request query.
 	 */
 	const canisterResolver = await CanisterResolver.setup();
-	const currentGateway = await canisterResolver.getCurrentGateway();
+	const currentGateway = DEV ? new URL(HOST) : (await canisterResolver.getCurrentGateway());
 	const lookup = await canisterResolver.lookupFromHttpRequest(request);
 
 	/**

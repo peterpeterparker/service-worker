@@ -14,7 +14,11 @@ import {
 	DomainsStorageDBSchema,
 	domainStorageProperties
 } from './typings';
-import { isRawDomain, maybeResolveCanisterFromHeaders, resolveCanisterFromUrl } from './utils';
+import {
+	isRawDomain,
+	maybeResolveCanisterFromHeaders,
+	resolveCanisterFromUrl
+} from './utils';
 
 export class CanisterResolver {
 	private static instance: CanisterResolver;
